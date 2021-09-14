@@ -4,8 +4,12 @@ import {
   Box,
   Button,
   Container,
+  FormControl,
   IconButton,
+  InputAdornment,
+  InputLabel,
   Select,
+  OutlinedInput,
   TextField,
   Typography } from '@material-ui/core'
 
@@ -40,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 0 15px 0',
     backgroundColor: theme.palette.background.default,
     border: '2px dashed #333333' 
+  },
+  preco: {
+    marginTop: '15px',
   },
   textField: {
     margin: theme.spacing(1, 0, 3),
@@ -209,6 +216,22 @@ const Publish = () => {
               variant="outlined"
               fullWidth
             />
+          </Box>
+        </Container>
+
+        <Container maxWidth="md" className={classes.boxContainer}>
+          <Box className={classes.box}>
+            <Typography component="h6" variant="h6" align="left" color="textPrimary">
+              Preço
+            </Typography>
+            <FormControl fullWidth variant="outlined" className={classes.preco}>
+              <InputLabel>Valor</InputLabel>
+              <OutlinedInput
+                onChange={() => {}}
+                startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+                labelWidth={40}
+              />
+            </FormControl>
           </Box>
         </Container>
 
