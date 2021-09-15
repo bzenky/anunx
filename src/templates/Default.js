@@ -5,7 +5,7 @@ const Default = ({ children }) => {
     <>
       <Header />
       {children}
-      <footer></footer>
+      <footer>AM006487382SQ</footer>
     </>
   )
 }
