@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
   mask: {},
   mainImage: {},
 
-  container: {
-    padding: theme.spacing(8, 0, 6),
-  },
   box: {
     backgroundColor: theme.palette.background.white,
     padding: theme.spacing(3),
@@ -117,7 +114,7 @@ const Publish = () => {
 
   return (
       <DefaultTemplate>
-        <Container maxWidth="sm" className={classes.container}>
+        <Container maxWidth="sm">
           <Typography component="h1" variant="h2" align="center" color="textPrimary">
             Publicar Anúncio
           </Typography>
