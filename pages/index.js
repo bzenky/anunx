@@ -4,7 +4,8 @@ import {
   IconButton,
   InputBase,
   Paper,
-  Typography } from '@material-ui/core'
+  Typography
+} from '@material-ui/core'
 
 import { makeStyles } from '@material-ui/core/styles'
 import SearchIcon from '@material-ui/icons/search'
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     padding: theme.spacing(0, 2),
-    marginTop: 20, 
+    marginTop: 20,
   },
   title: {
     marginBottom: 20,
@@ -38,7 +39,7 @@ const Home = () => {
           O que deseja encontrar ?
         </Typography>
         <Paper className={classes.searchBox}>
-          <InputBase 
+          <InputBase
             placeholder="Ex.: GTX 3600"
             fullWidth
           />
@@ -54,25 +55,25 @@ const Home = () => {
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={4}>
-          <Card 
-            image={'https://source.unsplash.com/random'}
-            title={'Produto X'}
-            subtitle={'R$ 60,00'}
-          />
+            <Card
+              image={'https://source.unsplash.com/random'}
+              title={'Produto X'}
+              subtitle={'R$ 60,00'}
+            />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-          <Card 
-            image={'https://source.unsplash.com/random'}
-            title={'Produto X'}
-            subtitle={'R$ 60,00'}
-          />
+            <Card
+              image={'https://source.unsplash.com/random'}
+              title={'Produto X'}
+              subtitle={'R$ 60,00'}
+            />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-          <Card 
-            image={'https://source.unsplash.com/random'}
-            title={'Produto X'}
-            subtitle={'R$ 60,00'}
-          />
+            <Card
+              image={'https://source.unsplash.com/random'}
+              title={'Produto X'}
+              subtitle={'R$ 60,00'}
+            />
           </Grid>
         </Grid>
       </Container>
