@@ -13,7 +13,9 @@ import {
   Select,
   OutlinedInput,
   TextField,
-  Typography
+  Typography,
+  MenuItem,
+  FormHelperText
 } from '@material-ui/core'
 
 import { useDropzone } from 'react-dropzone'
@@ -50,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     margin: theme.spacing(1, 0, 3),
+  },
+  title: {
+    marginBottom: '35px',
   },
   thumb: {
     position: 'relative',
@@ -93,6 +98,7 @@ const validationSchema = yup.object().shape({
     .min(6, 'Escreva um título maior')
     .max(100, 'Título muito grande')
     .required('Campo obrigatório'),
+  category: yup.string().required('Campo obrigatório'),
 })
 
 const Publish = () => {
@@ -126,7 +132,8 @@ const Publish = () => {
     <DefaultTemplate>
       <Formik
         initialValues={{
-          title: ''
+          title: '',
+          category: '',
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
@@ -142,7 +149,7 @@ const Publish = () => {
           }) => {
             return (
               <form onSubmit={handleSubmit}>
-                <Container maxWidth="sm">
+                <Container maxWidth="sm" className={classes.title}>
                   <Typography component="h1" variant="h2" align="center" color="textPrimary">
                     Publicar Anúncio
                   </Typography>
@@ -169,20 +176,21 @@ const Publish = () => {
                     >
                     </TextField>
 
-                    <Select
-                      native
-                      value=""
-                      fullWidth
-                      onChange={() => { }}
-                      inputProps={{
-                        name: 'age',
-                      }}
-                    >
-                      <option value="">Selecione</option>
-                      <option value={1}>Placa de Vídeo</option>
-                      <option value={2}>Teclado Mecânico</option>
-                      <option value={3}>X-Tudo</option>
-                    </Select>
+                    <FormControl error={errors.category} fullWidth>
+                      <Select
+                        name="category"
+                        value={values.category}
+                        fullWidth
+                        onChange={handleChange}
+                      >
+                        <MenuItem value="Placa de Vídeo">Placa de Vídeo</MenuItem>
+                        <MenuItem value="Teclado Mecânico">Teclado Mecânico</MenuItem>
+                        <MenuItem value="X-Tudo">X-Tudo</MenuItem>
+                      </Select>
+                      <FormHelperText>
+                        {errors.category}
+                      </FormHelperText>
+                    </FormControl>
                   </Box>
                 </Container>
 
