@@ -15,7 +15,8 @@ import {
   TextField,
   Typography,
   MenuItem,
-  FormHelperText
+  FormHelperText,
+  Input
 } from '@material-ui/core'
 
 import { useDropzone } from 'react-dropzone'
@@ -91,6 +92,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     marginTop: '15px'
   },
+  inputLabel: {
+    fontWeight: 400,
+    color: theme.palette.primary.main,
+  }
 }))
 
 const validationSchema = yup.object().shape({
@@ -99,6 +104,9 @@ const validationSchema = yup.object().shape({
     .max(100, 'Título muito grande')
     .required('Campo obrigatório'),
   category: yup.string().required('Campo obrigatório'),
+  description: yup.string()
+    .min(50, 'Escreva uma descrição com pelo menos 50 caracteres.')
+    .required('Campo obrigatório'),
 })
 
 const Publish = () => {
@@ -134,6 +142,8 @@ const Publish = () => {
         initialValues={{
           title: '',
           category: '',
+          description: '',
+
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
@@ -160,23 +170,25 @@ const Publish = () => {
 
                 <Container maxWidth="md" className={classes.boxContainer}>
                   <Box className={classes.box}>
-                    <Typography component="h6" variant="h6" align="left" color="textPrimary">
-                      Título de Anúncio
-                    </Typography>
-                    <TextField
-                      name="title"
-                      value={values.title}
-                      onChange={handleChange}
-                      label="Ex.: Computador Gamer i7"
-                      size="small"
-                      fullWidth
-                      className={classes.textField}
-                      error={errors.title}
-                      helperText={errors.title}
-                    >
-                    </TextField>
+                    <FormControl error={errors.title} fullWidth>
+                      <InputLabel classname={classes.inputLabel}>
+                        Título de Anúncio
+                      </InputLabel>
+                      <Input
+                        name="title"
+                        value={values.title}
+                        onChange={handleChange}
+                        className={classes.textField}
+                      />
+                      <FormHelperText>
+                        {errors.title}
+                      </FormHelperText>
+                    </FormControl>
 
                     <FormControl error={errors.category} fullWidth>
+                      <InputLabel classname={classes.inputLabel}>
+                        Categoria
+                      </InputLabel>
                       <Select
                         name="category"
                         value={values.category}
@@ -235,30 +247,33 @@ const Publish = () => {
                           </Box>
                         ))
                       }
-
                     </Box>
                   </Box>
                 </Container>
 
                 <Container maxWidth="md" className={classes.boxContainer}>
                   <Box className={classes.box}>
-                    <Typography component="h6" variant="h6" align="left" color="textPrimary">
-                      Descrição
-                    </Typography>
-                    <Typography component="div" variant="body2" align="left" color="textPrimary">
-                      Descreva os detalhes do item em venda.
-                    </Typography>
-                    <TextField
-                      multiline
-                      rows={6}
-                      variant="outlined"
-                      fullWidth
-                    />
+                    <FormControl error={errors.description} fullWidth>
+                      <InputLabel classname={classes.inputLabel}>
+                        Descreva os detalhes do item em venda.
+                      </InputLabel>
+                      <Input
+                        name="description"
+                        multiline
+                        rows={6}
+                        variant="outlined"
+                      />
+                      <FormHelperText>
+                        {errors.description}
+                      </FormHelperText>
+                    </FormControl>
+
                   </Box>
                 </Container>
 
                 <Container maxWidth="md" className={classes.boxContainer}>
                   <Box className={classes.box}>
+
                     <Typography component="h6" variant="h6" align="left" color="textPrimary">
                       Preço
                     </Typography>
