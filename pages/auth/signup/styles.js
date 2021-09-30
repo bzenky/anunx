@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
   inputLabel: {
     margin: '2px 0 3px'
   },
+  loading: {
+    display: 'block',
+    margin: '20px auto 0'
+  },
   submit: {
     margin: theme.spacing(4, 0, 1)
   }

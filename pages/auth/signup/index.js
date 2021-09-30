@@ -1,10 +1,12 @@
 import { Formik } from 'formik'
 import { initialValues, validationSchema } from './formValues'
 
+import axios from 'axios'
 import TemplateDefault from '../../../src/templates/Default'
 import {
   Box,
   Button,
+  CircularProgress,
   Container,
   Input,
   InputLabel,
@@ -17,6 +19,14 @@ import useStyles from './styles'
 
 const Signup = () => {
   const classes = useStyles()
+
+  const handleFormSubmit = async values => {
+    const response = await axios.post('/api/users', values)
+
+    if (response.data.success) {
+      console.log('ok')
+    }
+  }
 
   return (
     <TemplateDefault>
@@ -34,17 +44,16 @@ const Signup = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-              console.log('foi', values)
-            }}
+            onSubmit={handleFormSubmit}
           >
             {
               ({
-                touched,
-                values,
                 errors,
                 handleChange,
                 handleSubmit,
+                isSubmitting,
+                touched,
+                values,
               }) => {
                 return (
                   <form onSubmit={handleSubmit}>
@@ -107,15 +116,25 @@ const Signup = () => {
                       </FormHelperText>
                     </FormControl>
 
-                    <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                    >
-                      Cadastrar
-                    </Button>
+                    {
+                      isSubmitting
+                        ? (
+                          <CircularProgress className={classes.loading} />
+                        )
+                        : (
+                          <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                          >
+                            Cadastrar
+                          </Button>
+                        )
+                    }
+
+
                   </form>
                 )
               }
